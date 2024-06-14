@@ -3,7 +3,23 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'node --version'
+        sh 'npm install'
+        sh 'npm run build'
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'npm run test'
+      }
+      post {
+        failure {
+          error("Test failed, abort")
+        }
+      }
+    }
+    stage('deploy') {
+      steps {
+        sh 'echo would deploy the project'
       }
     }
   }

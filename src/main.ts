@@ -11,9 +11,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/echo/:value', (req, res) => {
-  res.send(`You sent: ${req.params.value}`);
+  res.send(req.params.value);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+if (!process.env.TEST_ENV) {
+  app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+  });
+}
+
+export default app;
