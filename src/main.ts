@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/echo/:value', (req, res) => {
-  res.send(req.params.value);
+  res.send(`value is: ${req.params.value}`);
 });
 
 if (!process.env.TEST_ENV) {
